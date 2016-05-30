@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             double c=0.0,f=0.0;
-            c = Double.parseDouble(celsius.getText().toString());
-            f = 9.0/5.0*c+32;
-            fahrenheit.setText("華氏"+f+"度");
+            try {
+                c = Double.parseDouble(celsius.getText().toString());
+                f = 9.0 / 5.0 * c + 32;
+                fahrenheit.setText("華氏" + f + "度");
+            }catch(NumberFormatException e){
+                Toast.makeText(MainActivity.this,"沒有輸入數字",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
